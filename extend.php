@@ -15,11 +15,28 @@ return [
     (new Extend\Frontend('forum'))->js(__DIR__ . '/dist/forum.extension.js'),
     (new Extend\Frontend('admin'))->js(__DIR__ . '/dist/admin.extension.js'),
     new Extend\Locales(__DIR__ . '/locale'),
-    (new Extend\Settings())
-        ->serializeToForum('fundingWalletDeposit', 'funding-wallet.deposit_address')
-        ->serializeToForum('fundingWalletRate', 'funding-wallet.conversion_rate')
-        ->serializeToAdmin('fundingWalletDeposit', 'funding-wallet.deposit_address')
-        ->serializeToAdmin('fundingWalletRate', 'funding-wallet.conversion_rate'),
+    return [
+    (new Extend\Frontend('forum'))
+        ->js(__DIR__.'/dist/forum.extension.js')
+        ->css(__DIR__.'/resources/forum.less'),
+
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__.'/dist/admin.extension.js')
+        ->css(__DIR__.'/resources/admin.less'),
+
+    new Extend\Locales(__DIR__.'/locale'),
+
+    (new Extend\ApiController(ListFundingRequestsController::class))
+        ->addInclude('user'),
+
+    (new Extend\ApiController(CreateFundingRequestController::class))
+        ->addInclude('user'),
+
+    (new Extend\Model(FundingRequest::class)),
+
+    (new Extend\Migrations())
+        ->path(__DIR__.'/migrations'),
+];
 
     (new Extend\Routes('api'))
         ->post('/funding-requests', 'funding-requests.create', CreateFundingRequestController::class)
