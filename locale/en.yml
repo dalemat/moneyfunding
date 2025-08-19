@@ -1,2 +1,17 @@
 funding-wallet:
-  title: Funding Wallet
+  admin:
+    settings:
+      deposit_address_label: "Deposit Address (ERC20)"
+      conversion_rate_label: "Conversion Rate (credits per token)"
+  forum:
+    request_button: "Request Funding"
+    modal:
+      title: "Submit Funding Request"
+      tx_label: "Transaction Hash"
+      amount_label: "Token Amount"
+    alerts:
+      submitted: "Funding request submitted."
+      error: "There was an error submitting the funding request."
+  notifications:
+    approved: "Your funding request was approved: {txHash}"
+    rejected: "Your funding request was rejected: {txHash} - {reason}"

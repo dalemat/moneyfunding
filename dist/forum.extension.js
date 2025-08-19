@@ -1,0 +1,44 @@
+(function () {
+  var app = window.app || (window.app = {});
+  app.initializers = app.initializers || { add: function(){} };
+  app.modal = app.modal || { show: function(){}, close: function(){} };
+  app.alerts = app.alerts || { show: function(){} };
+  app.forum = app.forum || { attribute: function(k){ return null; }, data: {} };
+
+  function FundingModal() {}
+  FundingModal.prototype.open = function() {
+    var tx = prompt('Enter transaction hash (0x...)');
+    if (!tx) return;
+    var amount = prompt('Enter token amount (e.g. 1.5)');
+    if (!amount) return;
+    var body = { tx_hash: tx, amount: amount };
+    var api = (app.forum && app.forum.attribute && app.forum.attribute('apiUrl')) ? app.forum.attribute('apiUrl') : '/api';
+    var url = api + '/funding-requests';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.onload = function() {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        alert('Funding request submitted.');
+      } else {
+        alert('Error submitting funding request.');
+      }
+    };
+    xhr.send(JSON.stringify(body));
+  };
+
+  app.initializers.add('funding-wallet-forum', function(){
+    try {
+      if (document && document.body) {
+        var btn = document.createElement('a');
+        btn.href = '#';
+        btn.style.margin = '6px';
+        btn.textContent = 'Request Funding';
+        btn.onclick = function(e){ e.preventDefault(); (new FundingModal()).open(); };
+        document.body.insertBefore(btn, document.body.firstChild);
+      }
+    } catch (e) {
+      console.error('FundingWallet forum init error', e);
+    }
+  });
+})();
