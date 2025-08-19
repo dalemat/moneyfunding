@@ -37,7 +37,7 @@ class ApproveFundingRequestController extends AbstractShowController
         $rate = (float) ($settings->get('funding-wallet.conversion_rate') ?: '0');
 
         if ($rate <= 0) {
-            throw new \InvalidArgumentException('Invalid conversion rate in settings.');
+            throw new \\InvalidArgumentException('Invalid conversion rate in settings.');
         }
 
         $credit = (float) $fr->amount * $rate;

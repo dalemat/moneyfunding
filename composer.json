@@ -1,6 +1,6 @@
 {
   "name": "funding/flarum-ext-funding-requests",
-  "description": "Funding requests with ERC20 tokens for Flarum Money",
+  "description": "Funding requests with ERC20 tokens for Flarum Money (Admin-approved).",
   "type": "flarum-extension",
   "license": "MIT",
   "authors": [
@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=8.0",
     "flarum/core": "^1.0",
     "antoinefr/flarum-ext-money": "*"
   },

@@ -1,3 +1,3 @@
-# Funding Wallet — Flarum Extension
+# Funding Wallet — Flarum extension
 
-Admin-approved funding requests (ERC20 → Money). Drop-in extension with prebuilt JS bundles.
+Admin-approved ERC20 funding requests, ready-to-drop-in with prebuilt JS.
