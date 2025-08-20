@@ -4,10 +4,8 @@ namespace Funding\Wallet\Api\Controller;
 
 use Funding\Wallet\Api\Serializer\FundingRequestSerializer;
 use Funding\Wallet\Model\FundingRequest;
-use Funding\Wallet\Notification\FundingRequestRejectedBlueprint;
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\User\Exception\PermissionDeniedException;
-use Flarum\Notification\NotificationSyncer;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -36,10 +34,6 @@ class RejectFundingRequestController extends AbstractShowController
         $fr->status = 'rejected';
         $fr->reason = $reason ?: null;
         $fr->save();
-
-        /** @var NotificationSyncer $syncer */
-        $syncer = resolve(NotificationSyncer::class);
-        $syncer->sync(new FundingRequestRejectedBlueprint($fr), [$fr->user]);
 
         return $fr;
     }

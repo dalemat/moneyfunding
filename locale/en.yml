@@ -12,6 +12,3 @@ funding-wallet:
     alerts:
       submitted: "Funding request submitted."
       error: "There was an error submitting the funding request."
-  notifications:
-    approved: "Your funding request was approved: {txHash}"
-    rejected: "Your funding request was rejected: {txHash} - {reason}"

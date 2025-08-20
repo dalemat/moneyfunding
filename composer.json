@@ -1,16 +1,10 @@
 {
   "name": "funding/flarum-ext-funding-requests",
-  "description": "Funding requests with ERC20 tokens for Flarum Money (Admin-approved).",
+  "description": "Admin-approved ERC20 funding requests for Flarum Money.",
   "type": "flarum-extension",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Your Name",
-      "email": "you@example.com"
-    }
-  ],
   "require": {
-    "php": ">=8.0",
+    "php": ">=7.4",
     "flarum/core": "^1.0",
     "antoinefr/flarum-ext-money": "*"
   },
@@ -21,10 +15,8 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "Funding Wallet",
+      "title": "Funding Wallet \u2014 Funding Requests",
       "id": "funding-wallet"
     }
-  },
-  "minimum-stability": "stable",
-  "prefer-stable": true
+  }
 }

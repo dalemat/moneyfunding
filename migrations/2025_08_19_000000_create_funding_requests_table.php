@@ -13,5 +13,4 @@ return Migration::createTable('funding_requests', function (Blueprint $table) {
     $table->timestamps();
 
     $table->index('user_id');
-    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 });

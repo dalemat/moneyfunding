@@ -1,7 +1,5 @@
 <?php
 
-namespace Funding\Wallet;
-
 use Flarum\Extend;
 use Funding\Wallet\Api\Controller\CreateFundingRequestController;
 use Funding\Wallet\Api\Controller\ListFundingRequestsController;
