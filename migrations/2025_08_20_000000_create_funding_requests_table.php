@@ -1,16 +1,24 @@
 <?php
 
-use Flarum\Database\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-return Migration::createTable('funding_requests', function (Blueprint $table) {
-    $table->increments('id');
-    $table->unsignedInteger('user_id');
-    $table->string('tx_hash', 100)->unique();
-    $table->decimal('amount', 32, 18);
-    $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-    $table->text('reason')->nullable();
-    $table->timestamps();
+return new class extends Migration {
+    public function up()
+    {
+        Schema::create('funding_requests', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->decimal('amount', 12, 2);
+            $table->string('tx_hash')->nullable();
+            $table->string('status')->default('pending');
+            $table->timestamps();
+        });
+    }
 
-    $table->index('user_id');
-});
+    public function down()
+    {
+        Schema::dropIfExists('funding_requests');
+    }
+};

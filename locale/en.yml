@@ -1,19 +1,8 @@
-funding-wallet:
-  admin:
-    settings:
-      deposit_address_label: "Deposit Address (ERC20)"
-      conversion_rate_label: "Conversion Rate (credits per token)"
+funding-requests:
   forum:
-    button_open: "Funding"
-    button_request: "Request Funding"
-    list_title: "Funding Requests"
-    your_requests: "Your Requests"
-    all_requests: "All Requests"
-    tx_label: "Transaction Hash"
-    amount_label: "Amount"
-    status: "Status"
-    reason: "Reason"
+    create_request: "Create Funding Request"
     approve: "Approve"
     reject: "Reject"
-    submitted: "Funding request submitted."
-    error: "There was an error."
+  admin:
+    settings:
+      title: "Funding Requests Settings"

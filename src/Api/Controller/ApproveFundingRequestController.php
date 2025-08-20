@@ -1,13 +1,10 @@
 <?php
 
-namespace Funding\Wallet\Api\Controller;
+namespace Funding\Requests\Api\Controller;
 
-use Funding\Wallet\Api\Serializer\FundingRequestSerializer;
-use Funding\Wallet\Model\FundingRequest;
 use Flarum\Api\Controller\AbstractShowController;
-use Flarum\Settings\SettingsRepositoryInterface;
-use Flarum\User\Exception\PermissionDeniedException;
-use Illuminate\Support\Facades\DB;
+use Funding\Requests\Model\FundingRequest;
+use Funding\Requests\Api\Serializer\FundingRequestSerializer;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -15,40 +12,12 @@ class ApproveFundingRequestController extends AbstractShowController
 {
     public $serializer = FundingRequestSerializer::class;
 
-    public function data(ServerRequestInterface $request, Document $document)
+    protected function data(ServerRequestInterface $request, Document $document)
     {
-        $actor = $request->getAttribute('actor');
-        if (!$actor || !$actor->isAdmin()) {
-            throw new PermissionDeniedException();
-        }
-
-        $id = (int) $request->getAttribute('id');
-        /** @var FundingRequest $fr */
-        $fr = FundingRequest::findOrFail($id);
-
-        if ($fr->status !== 'pending') {
-            return $fr;
-        }
-
-        /** @var SettingsRepositoryInterface $settings */
-        $settings = resolve(SettingsRepositoryInterface::class);
-        $rate = (float) ($settings->get('funding-wallet.conversion_rate') ?: '0');
-        if ($rate <= 0) {
-            throw new \InvalidArgumentException('Invalid conversion rate in settings.');
-        }
-
-        $credit = (float) $fr->amount * $rate;
-
-        DB::transaction(function () use ($fr, $credit) {
-            $user = $fr->user()->lockForUpdate()->first();
-            $current = (float) ($user->money ?? 0);
-            $user->money = $current + $credit;
-            $user->save();
-
-            $fr->status = 'approved';
-            $fr->save();
-        });
-
-        return $fr;
+        $id = $request->getAttribute('id');
+        $fundingRequest = FundingRequest::findOrFail($id);
+        $fundingRequest->status = 'approved';
+        $fundingRequest->save();
+        return $fundingRequest;
     }
 }

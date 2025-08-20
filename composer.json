@@ -1,6 +1,6 @@
 {
   "name": "funding/flarum-ext-funding-requests",
-  "description": "Admin-approved funding requests integrated with Flarum Money. Users submit tx hash + amount; admins approve; credits applied using a conversion rate.",
+  "description": "Admin-approved funding requests integrated with Flarum Money.",
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
