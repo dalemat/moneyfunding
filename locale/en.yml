@@ -1,8 +1,57 @@
-funding-requests:
-  forum:
-    create_request: "Create Funding Request"
-    approve: "Approve"
-    reject: "Reject"
+cryptofund-erc20-money:
   admin:
     settings:
-      title: "Funding Requests Settings"
+      ethereum_rpc_url_label: Ethereum RPC URL
+      ethereum_rpc_url_help: Your Ethereum node RPC endpoint (e.g., Infura, Alchemy)
+      contract_address_label: ERC20 Contract Address
+      contract_address_help: The contract address of the ERC20 token you want to accept
+      wallet_address_label: Receiving Wallet Address
+      wallet_address_help: Your Ethereum wallet address to receive tokens
+      conversion_rate_label: Points per Token
+      conversion_rate_help: How many forum points users get per 1 token
+      min_deposit_label: Minimum Deposit
+      min_deposit_help: Minimum token amount required for deposits
+      title: ERC20 Money Settings
+      save_button: Save Settings
+
+  forum:
+    user:
+      fund_account: Fund Account
+      current_balance: "Balance: {balance} points"
+
+    fund_modal:
+      title: Fund Your Account
+      wallet_address: Send tokens to this address
+      amount_label: Token Amount
+      amount_placeholder: Enter amount (e.g., 10.5)
+      amount_help: "Minimum: {min} tokens. You'll receive {rate} points per token."
+      tx_hash_label: Transaction Hash
+      tx_hash_placeholder: 0x...
+      tx_hash_help: Paste your transaction hash after sending tokens
+      submit_button: Submit Transaction
+      success_message: Transaction submitted! We'll verify and credit your account shortly.
+      error_message: Failed to submit transaction. Please try again.
+
+    transactions:
+      title: My Token Transactions
+      current_balance: "Current Balance: {balance} points"
+      amount: "{amount} tokens → {points} points"
+      status_pending: Pending
+      status_confirmed: Confirmed
+      status_failed: Failed
+      no_transactions: No transactions yet
+      
+  email:
+    points_credited_subject: Points Added to Your Account
+    points_credited_body: |
+      Hello!
+      
+      {amount} points have been successfully added to your account.
+      
+      You can now use these points on the forum.
+      
+      Best regards,
+      The Team
+
+  notifications:
+    points_credited: "{amount} points have been added to your account"

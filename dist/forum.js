@@ -1,1 +1,0 @@
-// Placeholder forum.js bundle

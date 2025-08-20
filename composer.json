@@ -1,31 +1,34 @@
 {
-    "name": "cryptoforex/money",
-    "description": "Add money field to users",
+    "name": "cryptofund/erc20-money",
+    "description": "ERC20 token funding system for Flarum",
+    "keywords": ["flarum", "extension", "erc20", "cryptocurrency", "ethereum"],
     "type": "flarum-extension",
-    "keywords": ["flarum", "money", "users"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Cryptoforex",
-            "email": "admin@cryptoforex.space"
+            "name": "CryptoFund",
+            "email": "dev@cryptofund.com"
         }
     ],
+    "require": {
+        "flarum/core": "^1.0.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "web3p/web3.php": "^0.1.0"
+    },
     "autoload": {
         "psr-4": {
-            "Cryptoforex\\Money\\": "src/"
+            "CryptoFund\\ERC20Money\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
-            "title": "Money Field",
+            "title": "ERC20 Money",
+            "category": "feature",
             "icon": {
                 "name": "fas fa-coins",
-                "backgroundColor": "#FFD700",
-                "color": "#000000"
+                "backgroundColor": "#e74c3c",
+                "color": "#fff"
             }
         }
-    },
-    "require": {
-        "flarum/core": "^1.0"
     }
 }
