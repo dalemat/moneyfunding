@@ -1,10 +1,10 @@
 <?php
 
 use Flarum\Extend;
-use Funding\Wallet\Api\Controller\CreateFundingRequestController;
-use Funding\Wallet\Api\Controller\ListFundingRequestsController;
-use Funding\Wallet\Api\Controller\ApproveFundingRequestController;
-use Funding\Wallet\Api\Controller\RejectFundingRequestController;
+use Funding\Requests\Api\Controller\CreateFundingRequestController;
+use Funding\Requests\Api\Controller\ListFundingRequestsController;
+use Funding\Requests\Api\Controller\ApproveFundingRequestController;
+use Funding\Requests\Api\Controller\RejectFundingRequestController;
 
 return [
     (new Extend\Frontend('forum'))

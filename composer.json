@@ -10,13 +10,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Funding\\Wallet\\": "src/"
+      "Funding\\Requests\\": "src/"
     }
   },
   "extra": {
     "flarum-extension": {
       "title": "Funding Requests",
-      "id": "funding-wallet",
+      "id": "funding-requests",
       "icon": {
         "name": "fas fa-hand-holding-usd",
         "backgroundColor": "#10b981",
