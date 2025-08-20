@@ -1,27 +1,31 @@
 {
-  "name": "funding/flarum-ext-funding-requests",
-  "description": "Admin-approved funding requests integrated with Flarum Money.",
-  "type": "flarum-extension",
-  "license": "MIT",
-  "require": {
-    "php": ">=7.4",
-    "flarum/core": "^1.8",
-    "antoinefr/flarum-ext-money": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "Funding\\Requests\\": "src/"
+    "name": "cryptoforex/money",
+    "description": "Add money field to users",
+    "type": "flarum-extension",
+    "keywords": ["flarum", "money", "users"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cryptoforex",
+            "email": "admin@cryptoforex.space"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cryptoforex\\Money\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Money Field",
+            "icon": {
+                "name": "fas fa-coins",
+                "backgroundColor": "#FFD700",
+                "color": "#000000"
+            }
+        }
+    },
+    "require": {
+        "flarum/core": "^1.0"
     }
-  },
-  "extra": {
-    "flarum-extension": {
-      "title": "Funding Requests",
-      "id": "funding-requests",
-      "icon": {
-        "name": "fas fa-hand-holding-usd",
-        "backgroundColor": "#10b981",
-        "color": "#ffffff"
-      }
-    }
-  }
 }
