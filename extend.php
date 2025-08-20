@@ -8,7 +8,8 @@ use Funding\Wallet\Api\Controller\RejectFundingRequestController;
 
 return [
     (new Extend\Frontend('forum'))
-        ->js(__DIR__.'/dist/forum.js'),
+        ->js(__DIR__.'/dist/forum.js')
+        ->css(__DIR__.'/dist/forum.css'),
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/dist/admin.js'),

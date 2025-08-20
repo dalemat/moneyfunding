@@ -21,9 +21,9 @@ class CreateFundingRequestController extends AbstractCreateController
             throw new NotAuthenticatedException();
         }
 
-        $data = (array) $request->getParsedBody();
-        $tx = trim((string) ($data['tx_hash'] ?? ''));
-        $amount = (string) ($data['amount'] ?? '');
+        $payload = (array) $request->getParsedBody();
+        $tx = isset($payload['tx_hash']) ? trim((string)$payload['tx_hash']) : '';
+        $amount = isset($payload['amount']) ? (string)$payload['amount'] : '';
 
         if ($tx === '' || !preg_match('/^0x[0-9a-fA-F]{64}$/', $tx)) {
             throw ValidationException::withMessages(['tx_hash' => 'Invalid transaction hash']);
@@ -33,7 +33,7 @@ class CreateFundingRequestController extends AbstractCreateController
         }
 
         if (FundingRequest::query()->where('tx_hash', $tx)->exists()) {
-            throw ValidationException::withMessages(['tx_hash' => 'This transaction was already submitted']);
+            throw ValidationException::withMessages(['tx_hash' => 'This transaction hash was already submitted']);
         }
 
         $fr = FundingRequest::create([

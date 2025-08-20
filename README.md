@@ -1,7 +1,6 @@
-# Funding Wallet — Funding Requests
+# Funding Requests (Flarum Extension)
 
-Admin-approved ERC20 funding requests for Flarum, integrated with the Money extension.
-Users submit a TX hash + amount; admins approve to credit Money balance via a conversion rate.
+Users submit funding requests (tx hash + amount). Admins approve/reject. On approval, the user's **Money** balance is credited using the configured conversion rate.
 
 ## Install
 ```bash
@@ -10,16 +9,21 @@ php flarum migrate
 php flarum cache:clear
 ```
 
-Enable the extension in Admin, then set:
-- **Deposit Address (ERC20)** — your central wallet address
-- **Conversion Rate** — forum credits per 1 token
+Enable in **Admin → Extensions → Funding Requests** and set:
+- **Deposit Address (ERC20)**
+- **Conversion Rate** (credits per token)
+
+## Usage
+- Forum header shows a **Funding** button.
+- Click **Request Funding** → enter TX hash (0x...) and token amount.
+- Admins open **Funding** modal to approve or reject. On approval, credits are added to the user's `money` field.
 
 ## API
-- `POST /funding-requests` — create request `{ tx_hash, amount }`
-- `GET /funding-requests` — list (admin sees all, user sees own)
-- `POST /funding-requests/{id}/approve`
-- `POST /funding-requests/{id}/reject`
+- `POST /api/funding-requests` `{ tx_hash, amount }`
+- `GET /api/funding-requests` (admins get all; users get own)
+- `POST /api/funding-requests/{id}/approve`
+- `POST /api/funding-requests/{id}/reject`
 
-## Notes
-- Requires `antoinefr/flarum-ext-money` installed/enabled.
-- Approval credits the user's `money` field with `amount * conversion_rate`.
+## Requirements
+- Flarum ^1.8
+- `antoinefr/flarum-ext-money`

@@ -22,7 +22,7 @@ class ApproveFundingRequestController extends AbstractShowController
             throw new PermissionDeniedException();
         }
 
-        $id = (int) ($request->getAttribute('id'));
+        $id = (int) $request->getAttribute('id');
         /** @var FundingRequest $fr */
         $fr = FundingRequest::findOrFail($id);
 

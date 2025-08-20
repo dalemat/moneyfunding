@@ -21,13 +21,9 @@ class ListFundingRequestsController extends AbstractListController
         }
 
         if ($actor->isAdmin()) {
-            return FundingRequest::query()->with('user')->orderByDesc('created_at')->get();
+            return FundingRequest::query()->orderByDesc('created_at')->get();
         }
 
-        return FundingRequest::query()
-            ->where('user_id', $actor->id)
-            ->with('user')
-            ->orderByDesc('created_at')
-            ->get();
+        return FundingRequest::query()->where('user_id', $actor->id)->orderByDesc('created_at')->get();
     }
 }

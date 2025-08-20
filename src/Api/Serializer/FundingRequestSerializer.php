@@ -3,11 +3,15 @@
 namespace Funding\Wallet\Api\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
+use Funding\Wallet\Model\FundingRequest;
 
 class FundingRequestSerializer extends AbstractSerializer
 {
     protected $type = 'funding-requests';
 
+    /**
+     * @param FundingRequest $request
+     */
     protected function getDefaultAttributes($request)
     {
         return [

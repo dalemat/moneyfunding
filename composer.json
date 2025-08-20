@@ -1,11 +1,11 @@
 {
   "name": "funding/flarum-ext-funding-requests",
-  "description": "Admin-approved ERC20 funding requests for Flarum Money.",
+  "description": "Admin-approved funding requests integrated with Flarum Money. Users submit tx hash + amount; admins approve; credits applied using a conversion rate.",
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
     "php": ">=7.4",
-    "flarum/core": "^1.0",
+    "flarum/core": "^1.8",
     "antoinefr/flarum-ext-money": "*"
   },
   "autoload": {
@@ -15,8 +15,13 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "Funding Wallet \u2014 Funding Requests",
-      "id": "funding-wallet"
+      "title": "Funding Requests",
+      "id": "funding-wallet",
+      "icon": {
+        "name": "fas fa-hand-holding-usd",
+        "backgroundColor": "#10b981",
+        "color": "#ffffff"
+      }
     }
   }
 }

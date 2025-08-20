@@ -20,7 +20,7 @@ class RejectFundingRequestController extends AbstractShowController
             throw new PermissionDeniedException();
         }
 
-        $id = (int) ($request->getAttribute('id'));
+        $id = (int) $request->getAttribute('id');
         $body = (array) $request->getParsedBody();
         $reason = trim((string) ($body['reason'] ?? ''));
 
